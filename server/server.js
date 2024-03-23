@@ -71,7 +71,7 @@ app.post('/upload-photo', upload.single('photo'), (req, res) => {
     console.log(req.file); // Cela montrera le chemin du fichier sauvegardé avec l'extension correcte
     if (req.file) {
         // Exécuter le script Python et envoyer la photo comme argument
-        const pythonProcess = spawn('python', ['predict.py', req.file.path]);
+        const pythonProcess = spawn('C:/Users/pierre/anaconda3/envs/d4gen', ['ml_model/plant_disease_prediction.py', req.file.path]);
 
         pythonProcess.stdout.on('data', (data) => {
             // Récupérer la sortie du script Python
