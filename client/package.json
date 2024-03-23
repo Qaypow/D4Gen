@@ -2,6 +2,7 @@
   "name": "tp1",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@nextui-org/react": "^2.2.4",
     "@testing-library/jest-dom": "^5.17.0",
