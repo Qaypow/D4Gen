@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@nextui-org/react';
 // import { auth } from './firebase';
-
+import {Link} from 'react-router-dom';
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // État de connexion de l'utilisateur
 
