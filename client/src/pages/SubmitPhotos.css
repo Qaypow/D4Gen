@@ -1,0 +1,54 @@
+.submit-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .submit-input {
+    margin-right: 10px; /* Ajoutez l'espacement souhaité entre l'input et le bouton */
+  }
+  
+  .submit-button {
+    display: flex;
+    align-items: center;
+    color: white; /* Couleur du texte en blanc */
+    font-size: 0.8em; /* Taille de la police réduite */
+
+  }
+  
+  .bn31 {
+    background-image: linear-gradient(to right, #006175 0%, #00a950 100%);
+    border-radius: 40px;
+    box-sizing: border-box;
+    display: block;
+    height: 50px;
+    font-size: 1.4em;
+    padding: 4px;
+    position: relative;
+    text-decoration: none;
+    width: 7em;
+    z-index: 2;
+    color: white; /* Couleur du texte en blanc */
+    font-size: 0.8em; /* Taille de la police réduite */
+    text-align: center; /* Centrage du texte */
+  }
+  
+  .bn31:hover {
+    color: #fff;
+  }
+  
+  .bn31 .bn31span {
+    align-items: center;
+    background: #0e0e10;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    transition: background 0.5s ease;
+    width: 100%;
+    font: 0.8;
+  }
+  
+  .bn31:hover .bn31span {
+    background: transparent;
+  }
+  

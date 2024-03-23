@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './SubmitPhotos.css';
 
 const SubmitPhotos = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -17,20 +18,16 @@ const SubmitPhotos = () => {
     setIsLoading(true);
 
     try {
-      // Envoi de la photo au serveur pour analyse
-      // Remplacez cette partie par votre propre logique d'envoi de fichiers
       const formData = new FormData();
       formData.append('photo', selectedFile);
 
-      // Exemple d'utilisation de fetch pour envoyer la photo à un endpoint sur le serveur
       const response = await fetch('/upload-photo', {
         method: 'POST',
         body: formData,
       });
 
-      // Traiter la réponse du serveur
       const data = await response.json();
-      console.log(data); // Afficher la réponse du serveur (par exemple, les résultats de l'analyse)
+      console.log(data);
     } catch (error) {
       console.error('Erreur lors de l\'envoi de la photo :', error);
     } finally {
@@ -39,21 +36,34 @@ const SubmitPhotos = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '79vh' }}>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Submit Photos</h1>
-        <input type="file" onChange={handleFileChange} />
-        {selectedFile && (
-          <div>
-            <h2>Photo sélectionnée :</h2>
-            <img
-              src={URL.createObjectURL(selectedFile)}
-              alt="Photo sélectionnée"
-              style={{ maxWidth: '100%', height: 'auto', minHeight: '50vh', maxHeight: '50vh' }} // Ajoutez maxHeight pour limiter la hauteur
-            />
-          </div>
-        )}
-        <button onClick={handleSubmit} disabled={!selectedFile || isLoading}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '79vh' }}>
+      <div className="info-container">
+        <h2>Pourquoi nous aider ?</h2>
+        <p>
+          Les maladies fongiques peuvent menacer la productivité agricole. Aidez-nous à détecter les maladies dès leur apparition en soumettant une photo de feuille de plante.
+        </p>
+      </div>
+      {selectedFile && (
+        <div>
+          <h3>Photo sélectionnée :</h3>
+          <img
+            src={URL.createObjectURL(selectedFile)}
+            alt="Photo sélectionnée"
+            style={{ maxWidth: '100%', height: 'auto', minHeight: '35vh', maxHeight: '35vh' }}
+          />
+        </div>
+      )}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
+        <label htmlFor="fileInput" className="bn31" style={{marginRight: '20px'}}>
+          <span className="bn31span">Choisir une photo</span>
+          <input
+            id="fileInput"
+            type="file"
+            style={{ display: 'none' }}
+            onChange={handleFileChange}
+          />
+        </label>
+        <button className="bn31" onClick={handleSubmit} disabled={!selectedFile || isLoading}>
           {isLoading ? 'Envoi en cours...' : 'Envoyer la photo'}
         </button>
       </div>
@@ -62,3 +72,4 @@ const SubmitPhotos = () => {
 };
 
 export default SubmitPhotos;
+

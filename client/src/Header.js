@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@nextui-org/react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'; // Importer Link depuis react-router-dom
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   padding: 20px;
@@ -11,82 +11,82 @@ const NavigationList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  align-items: center;
 `;
 
-const NavigationItem = styled.li`
-  display: inline;
-  margin-right: 20px;
-`;
-
+// Ajout de la police de caractères à la propriété font-family
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: #333;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif; /* Utilisation de la police Montserrat */
   transition: color 0.3s ease;
+  padding: 10px;
 
   &:hover {
     color: #007bff;
   }
 `;
 
-const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // État de connexion de l'utilisateur
+const HeaderContainer = styled.div`
+  background-color: #006400;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-  // Fonction de gestion de la connexion
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const LogoText = styled.h1`
+  color: white;
+  font-family: 'Bookman', 'URW Bookman L', serif;
+  font-size: 1.5em;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+`;
+
+const StyledButton = styled(Button)`
+  margin-left: 10px;
+`;
+
+const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleLogin = () => {
-    // Logique de connexion ici (par exemple, appel à une fonction d'authentification)
-    // Après la connexion réussie, mettez à jour l'état de connexion
     setIsLoggedIn(true);
   };
 
-  // Fonction de gestion de la déconnexion
   const handleLogout = () => {
-    // Logique de déconnexion ici
-    // Après la déconnexion réussie, mettez à jour l'état de connexion
     setIsLoggedIn(false);
   };
 
   return (
     <div>
-      <div style={{
-        backgroundColor: '#006400', 
-        padding: '10px 20px', 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center'
-      }}>
-        {/* Logo on the left */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          {/* If logo.png is in the public folder */}
+      <HeaderContainer>
+        <LogoContainer>
           <img src="Leaflogo.png" alt="logo" style={{ width: '50px', marginRight: '10px' }} />
-          
-          <h1 style={{ color: 'white', fontSize: '1.5em', margin: 0 }}>
-            Leaf AI
-          </h1>
-        </div>
-        
-        {/* Condition pour afficher le bouton de connexion ou de déconnexion */}
+          <LogoText>Leaf AI</LogoText>
+        </LogoContainer>
         {isLoggedIn ? (
-          <Button auto flat color="error" onClick={handleLogout}>
+          <StyledButton auto flat color="error" onClick={handleLogout}>
             Déconnexion
-          </Button>
+          </StyledButton>
         ) : (
-          <Button auto flat color="success" onClick={handleLogin}>
-            Connexion 
-          </Button>
+          <StyledButton auto flat color="success" onClick={handleLogin}>
+            Connexion
+          </StyledButton>
         )}
-      </div>
+      </HeaderContainer>
       <Container>
         <NavigationList>
-          <NavigationItem>
-            <StyledLink to="/">Accueil</StyledLink>
-          </NavigationItem>
-          <NavigationItem>
-            <StyledLink to="/SubmitPhotos">Analyser une photo</StyledLink>
-          </NavigationItem>
-          <NavigationItem>
-            <StyledLink to="/contact">Contact</StyledLink>
-          </NavigationItem>
+          <StyledLink to="/">Accueil</StyledLink>
+          <StyledLink to="/SubmitPhotos">Analyser une photo</StyledLink>
+          <StyledLink to="/OurContacts">Nous contacter</StyledLink>
         </NavigationList>
       </Container>
     </div>
@@ -94,3 +94,4 @@ const Header = () => {
 };
 
 export default Header;
+
