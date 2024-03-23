@@ -46,7 +46,11 @@ const SubmitPhotos = () => {
         {selectedFile && (
           <div>
             <h2>Photo sélectionnée :</h2>
-            <img src={URL.createObjectURL(selectedFile)} alt="Photo sélectionnée" style={{ maxWidth: '100%', height: 'auto' }} />
+            <img
+              src={URL.createObjectURL(selectedFile)}
+              alt="Photo sélectionnée"
+              style={{ maxWidth: '100%', height: 'auto', minHeight: '50vh', maxHeight: '50vh' }} // Ajoutez maxHeight pour limiter la hauteur
+            />
           </div>
         )}
         <button onClick={handleSubmit} disabled={!selectedFile || isLoading}>
