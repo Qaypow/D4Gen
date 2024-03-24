@@ -67,27 +67,33 @@ app.use(cors());
 
 app.post('/upload-photo', upload.single('photo'), (req, res) => {
     console.log("Photo reçue, traitement en cours...");
-    console.log(req.body); // Afficher les autres parties du corps de la requête
-    console.log(req.file); // Cela montrera le chemin du fichier sauvegardé avec l'extension correcte
     if (req.file) {
-        // Exécuter le script Python et envoyer la photo comme argument
-        const pythonProcess = spawn('C:/Users/pierre/anaconda3/envs/d4gen', ['ml_model/plant_disease_prediction.py', req.file.path]);
+        let result = '';
+
+        // Assurez-vous que le chemin vers python.exe et le script Python sont corrects
+        const pythonProcess = spawn('C:/Users/pierre/anaconda3/envs/d4gen/python.exe', ['ml_model/plant_disease_prediction.py', req.file.path]);
 
         pythonProcess.stdout.on('data', (data) => {
-            // Récupérer la sortie du script Python
-            console.log(`Sortie du script Python : ${data}`);
-            // Envoyer la réponse au client
-            res.json({ result: data.toString() });
+            result += data.toString();
         });
 
         pythonProcess.stderr.on('data', (data) => {
-            // En cas d'erreur
             console.error(`Erreur du script Python : ${data}`);
-            res.status(500).json({ error: data.toString() });
         });
 
         pythonProcess.on('close', (code) => {
             console.log(`Processus Python terminé avec le code ${code}`);
+            if (code === 0) {
+                console.log("Résultat de la prédiction :", result); // Afficher la prédiction dans la console
+                try {
+                    const parsedResult = JSON.parse(result); // Assurez-vous que la sortie est au format JSON
+                    res.json(parsedResult);
+                } catch (error) {
+                    res.status(500).json({ error: "Erreur lors de l'analyse du résultat de la prédiction." });
+                }
+            } else {
+                res.status(500).json({ error: 'Une erreur est survenue lors de la prédiction.' });
+            }
         });
     } else {
         res.status(400).json({ error: 'Aucun fichier téléchargé' });
