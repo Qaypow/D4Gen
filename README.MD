@@ -1,1 +1,1 @@
-Un ensemble de Tp sur les blockchain tezos et Polygon (ou tout autre evm compatible) pour développer de bonnes pratiques 
+Hackaton D4Gen, LeafAI application permettant la détection sur image de maladies de plantes
