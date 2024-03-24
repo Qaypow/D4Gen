@@ -38,9 +38,9 @@ const SubmitPhotos = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '79vh' }}>
       <div className="info-container">
-        <h2>Pourquoi nous aider ?</h2>
+        <h1>Pourquoi utiliser notre solution ?</h1>
         <p>
-          Les maladies fongiques peuvent menacer la productivité agricole. Aidez-nous à détecter les maladies dès leur apparition en soumettant une photo de feuille de plante.
+          Les maladies fongiques peuvent menacer la productivité agricole. Détecter les maladies dès leur apparition en soumettant une photo de feuille de plante.
         </p>
       </div>
       {selectedFile && (

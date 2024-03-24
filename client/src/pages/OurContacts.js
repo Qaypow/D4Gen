@@ -45,6 +45,12 @@ const OurContacts = () => {
         phone: '+0987654321',
         photo: '/marie_durand.jpg', // Chemin vers l'image de Marie Durand
     },
+    {
+        name: 'Nicolas Bieszczad',
+        email: 'nicolas.bieszczad@telecom-sudparis.eu',
+        phone: '+0987654321',
+        photo: '/marie_durand.jpg', // Chemin vers l'image de Marie Durand
+    },
   ];
 
   const contactContainerStyle = {
