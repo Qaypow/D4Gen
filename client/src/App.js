@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage';
 import SubmitPhotos from './pages/SubmitPhotos';
 import OurContacts from './pages/OurContacts'
 import { BrowserRouter as Router,Route,Routes} from 'react-router-dom';
+import './pages/style.css';
 function App() {
   return (
 
